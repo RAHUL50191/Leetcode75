@@ -1,0 +1,42 @@
+
+class Solution {
+public:
+string trim(string s){
+    int i=0;
+   for(;i<s.size();i++){
+       if(s[i]!=' ')
+       break;
+   }
+    s= s.substr(i);
+    for(i=s.size()-1;i>=0;i--){
+       if(s[i]!=' ')
+       break;
+   }
+   return s.substr(0,i+1);
+}
+    string reverseWords(string s) {
+            s=trim(s);
+
+            vector<string> sarr;
+            for(int i=0;i<s.size();i++){
+
+               
+                while(i< s.size() && s[i]==' '){
+                    i++;
+                }
+                string str="";
+                while(i< s.size() && s[i]!=' '){
+                    str+=s[i];
+                    i++;
+                }
+                sarr.push_back(str);
+            }
+            string str="";
+            for(int i=sarr.size()-1;i>=0;i--){
+                if(i!=0)str+=sarr[i]+" ";
+                else{str+=sarr[i];}
+                
+            }
+            return str;
+    }
+};
