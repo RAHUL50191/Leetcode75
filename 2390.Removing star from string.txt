@@ -1,0 +1,66 @@
+class Solution {
+public:
+    string rev(string s){
+        int i=s.size()-1;
+        string rs;
+        while(i>=0){
+            rs+=s[i];
+            i--;
+        }
+        return rs;
+    }
+    string removeStars(string s) {
+        stack<char> st;
+        string res;
+        int i=0;        
+        while(i<s.size()){
+            
+            
+            if(s[i]=='*')
+            {
+                if(!st.empty()){
+                    st.pop();
+                }
+            }
+            else{
+                st.push(s[i]);
+            }
+            
+            i++;
+        }
+        i=0;
+        while(!st.empty()){
+            res+=st.top();
+            st.pop();
+        }
+       
+        return  rev(res);
+    }
+};
+
+
+BEST::
+const static auto fast = [] {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    return 0;
+}();
+
+class Solution {
+public:
+    string removeStars(string s) {
+        int j = 0;
+        for(int i= 0; i < s.size(); i++){
+            if(s[i] == '*'){
+                j--;
+            }else{
+                // swap(s[i],s[j]);
+                // i++;
+                s[j] = s[i];
+                j++;
+            }
+        }
+        return s.substr(0,j);
+    }
+};
