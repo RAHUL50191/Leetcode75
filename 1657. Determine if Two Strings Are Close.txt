@@ -1,0 +1,68 @@
+//best
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+        cout.tie(NULL);
+        int vec1[26]={};
+        int vec2[26]={};
+        for(char i:word1){
+            vec1[i-'a']++;
+        }
+        for(char i:word2){
+            vec2[i-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            if(vec1[i]>0 && vec2[i]==0 || (vec2[i]>0 && vec1[i]==0)){
+                return false;
+            }
+        }
+        sort(vec1,vec1+26);
+        sort(vec2,vec2+26);
+        for(int i=0;i<26;i++){
+            if(vec1[i]!=vec2[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+};
+//self
+class Solution {
+public:
+    bool closeStrings(string word1, string word2) {
+        vector<int> Lword1(26,0),Lword2(26,0);
+
+        for(char c:word1){
+            Lword1[((int)c-97)]++;
+        }
+        
+        for(char c:word2){
+            Lword2[((int)c-97)]++;
+            
+        }
+          for(int i=0;i<26;i++)
+           {
+            if(Lword1[i]!=0)
+                if(Lword2[i]==0)
+                    return 0;
+            if(Lword2[i]!=0)
+                if(Lword1[i]==0)
+                    return 0;
+            }
+        for(int i=0;i<26;i++)
+        for(int j=0;j<26;j++)
+            {
+                if(Lword1[i]==Lword2[j]){
+                    Lword1[i]=0;
+                    Lword2[j]=0;
+                }
+            }
+        for(int i=0;i<26;i++){
+            if(Lword1[i]!=0 || Lword2[i]!=0){
+            cout<<Lword1[i]<<Lword2[i]<<" ";return 0;}
+        }
+        return 1;
+    }
+};
